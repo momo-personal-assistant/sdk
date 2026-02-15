@@ -256,10 +256,10 @@ export interface CapabilitiesResponse {
 export interface UsageResponse {
   usage: {
     plan: "free" | "pro";
+    month: string;
     limit: number;
-    used: number;
+    callCount: number;
     remaining: number;
-    resetDate: string;
   };
 }
 
