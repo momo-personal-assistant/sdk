@@ -134,13 +134,47 @@ Discover available integrations and tools.
 const { integrations, tools } = await momo.capabilities()
 ```
 
+#### `tools.execute(params)`
+
+Execute an integration tool (Gmail, Slack, Notion, GitHub). Use `capabilities()` to discover available tools.
+
+```typescript
+// Send an email via Gmail
+const { result } = await momo.tools.execute({
+  tool: 'gmail_send_email',
+  params: {
+    to: 'team@example.com',
+    subject: 'Weekly update',
+    body: 'Here are this week\'s key decisions...',
+  },
+})
+
+// Search Slack messages
+const { result } = await momo.tools.execute({
+  tool: 'slack_search_messages',
+  params: { query: 'launch date' },
+})
+
+// List GitHub PRs
+const { result } = await momo.tools.execute({
+  tool: 'github_list_prs',
+  params: { owner: 'my-org', repo: 'my-repo', state: 'open' },
+})
+```
+
+Available tools include:
+- **Gmail**: `gmail_list_emails`, `gmail_get_email`, `gmail_get_thread`, `gmail_search_emails`, `gmail_send_email`, `gmail_reply_to_email`
+- **Notion**: `notion_search_pages`, `notion_get_page`, `notion_list_databases`, `notion_query_database`, `notion_create_page`, `notion_append_content`, `notion_add_database_entry`
+- **GitHub**: `github_list_repos`, `github_list_connected_repos`, `github_list_commits`, `github_get_commit`, `github_list_prs`, `github_get_pr`, `github_list_issues`
+- **Slack**: `slack_get_my_identity`, `slack_list_channels`, `slack_get_channel_messages`, `slack_get_thread`, `slack_search_messages`, `slack_get_my_mentions`, `slack_send_message`, `slack_reply_to_thread`
+
 #### `usage()`
 
 Get current API usage and plan info.
 
 ```typescript
 const { usage } = await momo.usage()
-console.log(`${usage.used}/${usage.limit} calls used`)
+console.log(`${usage.callCount}/${usage.limit} calls used`)
 ```
 
 #### `scheduledTasks.list()`
