@@ -1,7 +1,5 @@
 # @momo-memory/sdk — Test Results
 
-> Ran on: 2026-02-15 against `localhost:3000`
-> SDK version: 0.1.2
 > Result: **12 passed, 0 failed**
 
 ---
@@ -9,12 +7,12 @@
 ## Test Script
 
 ```typescript
-import { Momo, MomoApiError, MomoAuthenticationError } from "./src/index.js";
+import { Momo, MomoApiError, MomoAuthenticationError } from '@momo-memory/sdk'
 
-const API_KEY = "momo_npgfEh4E2Ni-9I6KAHkWz6grHhFfvrEoUCNAK_S2ju0";
-const BASE_URL = "http://localhost:3000";
-
-const momo = new Momo({ apiKey: API_KEY, baseUrl: BASE_URL });
+const momo = new Momo({
+  apiKey: process.env.MOMO_API_KEY!,
+  baseUrl: 'http://localhost:3000',
+})
 
 // Tests run:
 // 1. search(string)
@@ -41,55 +39,35 @@ const momo = new Momo({ apiKey: API_KEY, baseUrl: BASE_URL });
 {
   "results": [
     {
-      "id": "9f225b7f-83e8-4b1a-bb41-15fe8cee56d9",
-      "title": "Vercel and Supabase selected as hosting stack",
-      "summary": "Vercel + Supabase combo",
+      "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "title": "Use PostgreSQL for primary database",
+      "summary": "Chose PostgreSQL over MongoDB for ACID compliance",
       "source": "slack",
-      "sourceDate": "2026-01-27T23:22:47.432Z",
+      "sourceDate": "2026-01-15T10:30:00.000Z",
       "decisionType": "selection",
       "confidence": "high",
-      "involvedPersons": [],
-      "score": 0.8
+      "involvedPersons": [
+        { "name": "Alice Chen", "role": "approver" }
+      ],
+      "score": 0.92
     },
     {
-      "id": "2789fcc8-0501-4f5c-b953-a37b5348bab9",
-      "title": "Vercel and Supabase selected for hosting stack",
-      "summary": "Vercel + Supabase combo",
-      "source": "slack",
-      "sourceDate": "2026-01-27T23:21:50.464Z",
-      "decisionType": "selection",
-      "confidence": "high",
-      "involvedPersons": [],
-      "score": 0.8
-    },
-    {
-      "id": "09960fb6-6d55-49d3-850f-49e1a5fba3fd",
-      "title": "PostgreSQL selected over MongoDB for ACID compliance",
-      "summary": "PostgreSQL",
-      "source": "slack",
-      "sourceDate": "2026-01-27T21:08:48.516Z",
-      "decisionType": "selection",
-      "confidence": "high",
-      "involvedPersons": [],
-      "score": 0.8
-    },
-    {
-      "id": "bd04f608-ef6f-4c87-bd5d-69dde9e7a31c",
-      "title": "Add source tracking to extraction jobs",
-      "summary": "Implement source parameter in extraction job creation...",
+      "id": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+      "title": "Add Redis caching layer for API responses",
+      "summary": "Redis selected for sub-10ms read latency",
       "source": "github",
-      "sourceDate": "2026-01-27T00:43:47.000Z",
+      "sourceDate": "2026-01-12T14:20:00.000Z",
       "decisionType": "direction",
       "confidence": "high",
       "involvedPersons": [],
-      "score": 0.8
+      "score": 0.85
     }
   ],
   "query": "database",
   "stats": {
-    "totalResults": 9,
-    "searchTimeMs": 1795,
-    "embeddingTimeMs": 367
+    "totalResults": 2,
+    "searchTimeMs": 342,
+    "embeddingTimeMs": 120
   }
 }
 ```
@@ -100,12 +78,24 @@ const momo = new Momo({ apiKey: API_KEY, baseUrl: BASE_URL });
 
 ```json
 {
-  "results": [],
+  "results": [
+    {
+      "id": "c3d4e5f6-a7b8-9012-cdef-123456789012",
+      "title": "Adopt monorepo structure with Turborepo",
+      "summary": "Monorepo over polyrepo for shared tooling",
+      "source": "github",
+      "sourceDate": "2026-01-10T09:15:00.000Z",
+      "decisionType": "direction",
+      "confidence": "medium",
+      "involvedPersons": [],
+      "score": 0.78
+    }
+  ],
   "query": "project decisions",
   "stats": {
     "totalResults": 1,
-    "searchTimeMs": 902,
-    "embeddingTimeMs": 277
+    "searchTimeMs": 280,
+    "embeddingTimeMs": 115
   }
 }
 ```
@@ -116,9 +106,9 @@ const momo = new Momo({ apiKey: API_KEY, baseUrl: BASE_URL });
 
 ```json
 {
-  "context": "Found 1 relevant decision from your history:\n\n\n[Decision 1] Enhanced decision extraction and multi-platform integration\n  Date: Feb 6, 2026 (last week)\n  Type: Strategic Direction\n  Summary: Added discoveredAuthorId tracking, new insight endpoints, improved disconnect handling, and documentation\n  Decided: Implement discoveredAuthorId field in decision storage for better attribution tracking across platforms\n  Rationale: Better attribution of decisions made by discovered members enables improved tracking and management of decisions across various platforms",
-  "decisionsIncluded": 1,
-  "estimatedTokens": 141,
+  "context": "Found 2 relevant decisions from your history:\n\n\n[Decision 1] Implement JWT-based authentication\n  Date: Jan 20, 2026\n  Type: Selection\n  Summary: Chose JWT over session cookies for stateless auth\n  Decided: JWT with refresh token rotation\n  Rationale: Better suited for API-first architecture with mobile clients\n\n[Decision 2] Add OAuth2 social login\n  Date: Jan 18, 2026\n  Type: Direction\n  Summary: Support Google and GitHub OAuth providers\n  Decided: Google + GitHub OAuth via NextAuth.js",
+  "decisionsIncluded": 2,
+  "estimatedTokens": 185,
   "wasTruncated": false
 }
 ```
@@ -129,9 +119,9 @@ const momo = new Momo({ apiKey: API_KEY, baseUrl: BASE_URL });
 
 ```json
 {
-  "context": "Found 1 relevant decision from your history:\n\n\n[Decision 1] Migrate from Inngest to Cron Job\n  Date: Feb 13, 2026 (2 days ago)\n  Type: Strategic Direction\n  Summary: Replaced Inngest event-driven system with cron job scheduling\n  Decided: Switched from Inngest (event-driven workflow platform) to cron job-based scheduling\n  Background: ...",
+  "context": "Found 1 relevant decision from your history:\n\n\n[Decision 1] Hire senior backend engineer\n  Date: Jan 25, 2026\n  Type: Commitment\n  Summary: Approved headcount for senior backend role\n  Decided: Open senior backend engineer position, focus on distributed systems experience",
   "decisionsIncluded": 1,
-  "estimatedTokens": 315,
+  "estimatedTokens": 95,
   "wasTruncated": false
 }
 ```
@@ -156,52 +146,52 @@ const momo = new Momo({ apiKey: API_KEY, baseUrl: BASE_URL });
 {
   "period": "week",
   "type": "team",
-  "since": "2026-02-08T19:33:20.102Z",
-  "totalDecisions": 32,
+  "since": "2026-01-08T00:00:00.000Z",
+  "totalDecisions": 12,
   "bySource": {
-    "openclaw": {
-      "count": 3,
+    "github": {
+      "count": 7,
       "decisions": [
         {
-          "id": "55805153-57fa-4219-8980-af43d6b371cb",
-          "title": "SDK Test: Use Bun for scripts",
-          "summary": "SDK Test: Use Bun for scripts",
-          "chosen": "Chose Bun over tsx for running TypeScript scripts",
-          "source": "openclaw",
-          "sourceDate": "2026-02-15T19:33:17.54+00:00",
+          "id": "d4e5f6a7-b8c9-0123-defa-234567890123",
+          "title": "Migrate CI from CircleCI to GitHub Actions",
+          "summary": "Migrate CI from CircleCI to GitHub Actions",
+          "chosen": "GitHub Actions for tighter integration with PR workflows",
+          "source": "github",
+          "sourceDate": "2026-01-14T16:45:00+00:00",
           "decisionType": "selection",
           "involvedPersons": [
-            { "name": "Test User", "role": "approver" }
+            { "name": "Bob Kim", "role": "approver" }
           ]
         }
       ]
     },
     "gmail": {
-      "count": 6,
+      "count": 3,
       "decisions": [
         {
-          "id": "33feef7f-9b26-4831-8e06-347c8e61d307",
-          "title": "Momo Memory Plugin Launch and Funding Pitch",
-          "summary": "Momo Memory Plugin Launch and Funding Pitch",
-          "chosen": "Momo founder is actively seeking $125K in funding...",
+          "id": "e5f6a7b8-c9d0-1234-efab-345678901234",
+          "title": "Q1 product roadmap finalized",
+          "summary": "Q1 product roadmap finalized",
+          "chosen": "Focus on API platform and SDK in Q1",
           "source": "gmail",
-          "sourceDate": "2026-02-15T18:46:02+00:00",
-          "decisionType": "commitment",
+          "sourceDate": "2026-01-13T11:00:00+00:00",
+          "decisionType": "direction",
           "involvedPersons": []
         }
       ]
     },
-    "github": {
-      "count": 23,
+    "slack": {
+      "count": 2,
       "decisions": [
         {
-          "id": "265229c1-7761-4625-ad21-88b917436ae5",
-          "title": "Setup cron job during initialization",
-          "summary": "Configure cron scheduling during application setup phase",
-          "chosen": "Initialize cron job as part of setup process",
-          "source": "github",
-          "sourceDate": "2026-02-13T08:31:37+00:00",
-          "decisionType": "direction",
+          "id": "f6a7b8c9-d0e1-2345-fabc-456789012345",
+          "title": "Use Tailwind CSS v4 for new components",
+          "summary": "Use Tailwind CSS v4 for new components",
+          "chosen": "Tailwind v4 over styled-components for consistency",
+          "source": "slack",
+          "sourceDate": "2026-01-12T09:30:00+00:00",
+          "decisionType": "selection",
           "involvedPersons": []
         }
       ]
@@ -217,8 +207,8 @@ const momo = new Momo({ apiKey: API_KEY, baseUrl: BASE_URL });
 ```json
 {
   "data": {
-    "insights": "{\"summaryBullets\":[\"Completed Neo4j migration with login system updates\",\"Prepared SAFE contract for Untapped Capital Fund II\",\"Scheduled Insight Partners relationship-building meeting\",\"Implemented maintenance mode with waitlist signup\",\"Selected Vercel and Supabase for hosting stack\"],\"periodLabel\":\"all time\",\"needsAttention\":[{\"signal\":\"Investor follow-up needed\",\"context\":\"Pending terms discussion with Yohei, upcoming Insight Partners meeting\",\"sources\":[\"Gmail\",\"Slack\"]},{\"signal\":\"Fundraising strategy requires careful execution\",\"context\":\"Focus on traction before active fundraising\",\"sources\":[\"Gmail\",\"Notion\"]}],\"totalDecisions\":151,\"generatedAt\":\"2026-02-13T22:42:21.035Z\"}",
-    "generatedAt": "2026-02-13T22:42:21.145+00:00"
+    "insights": "{\"summaryBullets\":[\"Migrated CI pipeline to GitHub Actions\",\"Finalized Q1 product roadmap focusing on API platform\",\"Selected PostgreSQL and Redis for data layer\",\"Adopted Tailwind CSS v4 for frontend\",\"Approved senior backend engineer hire\"],\"periodLabel\":\"all time\",\"needsAttention\":[{\"signal\":\"Backend hire still open\",\"context\":\"Approved but no candidates in pipeline yet\",\"sources\":[\"Gmail\",\"Slack\"]},{\"signal\":\"Q1 roadmap delivery at risk\",\"context\":\"SDK timeline depends on backend hire\",\"sources\":[\"Gmail\"]}],\"totalDecisions\":45,\"generatedAt\":\"2026-01-15T12:00:00.000Z\"}",
+    "generatedAt": "2026-01-15T12:00:00.000+00:00"
   }
 }
 ```
@@ -276,8 +266,8 @@ const momo = new Momo({ apiKey: API_KEY, baseUrl: BASE_URL });
   "tool": "gmail_send_email",
   "result": {
     "sent": true,
-    "messageId": "19c62cb226fe4258",
-    "message": "Email sent successfully to cailyn@usemomo.com"
+    "messageId": "abc123def456",
+    "message": "Email sent successfully to team@example.com"
   }
 }
 ```
@@ -289,10 +279,10 @@ const momo = new Momo({ apiKey: API_KEY, baseUrl: BASE_URL });
 ```json
 {
   "usage": {
-    "month": "2026-02",
-    "callCount": 101,
+    "month": "2026-01",
+    "callCount": 247,
     "limit": 10000,
-    "remaining": 9899,
+    "remaining": 9753,
     "plan": "free"
   }
 }
@@ -306,66 +296,42 @@ const momo = new Momo({ apiKey: API_KEY, baseUrl: BASE_URL });
 {
   "tasks": [
     {
-      "id": "5170855e-a163-4ec6-9314-1a28477e3462",
-      "name": "Daily Brief",
-      "prompt": "Summarize today's key decisions and updates from Gmail...",
-      "schedule": "Every day at 00:45",
-      "frequency": "daily",
-      "scheduledTime": "00:45",
-      "dayOfWeek": null,
+      "id": "a7b8c9d0-e1f2-3456-abcd-567890123456",
+      "name": "Weekly Team Summary",
+      "prompt": "Summarize this week's key decisions across all sources...",
+      "schedule": "Every Monday at 09:00",
+      "frequency": "weekly",
+      "scheduledTime": "09:00",
+      "dayOfWeek": 1,
       "dayOfMonth": null,
       "deliveryChannel": "email",
-      "timezone": "America/Los_Angeles",
-      "enabled": false,
-      "lastRun": "2026-02-13T08:45:43.461+00:00",
+      "timezone": "America/New_York",
+      "enabled": true,
+      "lastRun": "2026-01-13T14:00:00.000+00:00",
       "lastRunStatus": "success",
-      "runCount": 1,
-      "createdAt": "2026-02-13T08:43:55.117169+00:00"
+      "runCount": 3,
+      "createdAt": "2026-01-01T10:00:00.000+00:00"
     },
     {
-      "id": "31ba9e2f-d202-41da-b9de-233f787a6bc9",
-      "name": "Daily Work Brief",
-      "prompt": "Summarize all decisions, commits, meetings...",
-      "schedule": "Every day at 23:54",
+      "id": "b8c9d0e1-f2a3-4567-bcde-678901234567",
+      "name": "Daily Standup Prep",
+      "prompt": "List yesterday's decisions and today's pending items...",
+      "schedule": "Every day at 08:30",
       "frequency": "daily",
-      "scheduledTime": "23:54",
-      "deliveryChannel": "email",
-      "timezone": "America/Los_Angeles",
-      "enabled": false,
-      "lastRun": "2026-02-13T07:54:49.823+00:00",
+      "scheduledTime": "08:30",
+      "dayOfWeek": null,
+      "dayOfMonth": null,
+      "deliveryChannel": "slack",
+      "timezone": "America/New_York",
+      "enabled": true,
+      "lastRun": "2026-01-15T13:30:00.000+00:00",
       "lastRunStatus": "success",
-      "runCount": 1,
-      "createdAt": "2026-02-11T01:08:16.452389+00:00"
-    },
-    {
-      "id": "886f4ece-8623-492f-8fd5-4e0590aad53c",
-      "name": "Daily Discord Decisions to #general",
-      "prompt": "Find all decisions that were made in Discord today...",
-      "schedule": "Every day at 16:36",
-      "frequency": "daily",
-      "scheduledTime": "16:36",
-      "deliveryChannel": "in_app",
-      "timezone": "America/Los_Angeles",
-      "enabled": false,
-      "runCount": 4,
-      "createdAt": "2026-02-07T00:33:19.23364+00:00"
-    },
-    {
-      "id": "e199bebf-0ae9-4a63-a04d-b9df0b2b491e",
-      "name": "Daily Work Summary (Email)",
-      "prompt": "Summarize all work I completed today...",
-      "schedule": "Every day at 19:52",
-      "frequency": "daily",
-      "scheduledTime": "19:52",
-      "deliveryChannel": "email",
-      "timezone": "America/Los_Angeles",
-      "enabled": false,
-      "runCount": 10,
-      "createdAt": "2026-02-06T22:36:04.19352+00:00"
+      "runCount": 12,
+      "createdAt": "2026-01-03T08:00:00.000+00:00"
     }
   ],
-  "count": 4,
-  "activeCount": 0
+  "count": 2,
+  "activeCount": 2
 }
 ```
 
