@@ -1,0 +1,52 @@
+{
+  "name": "@momo-memory/sdk",
+  "version": "0.1.0",
+  "description": "TypeScript SDK for the Momo decision memory API",
+  "license": "MIT",
+  "author": "Momo",
+  "homepage": "https://usemomo.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/momo-personal-assistant/momo-memory-engine"
+  },
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc -p tsconfig.json",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0"
+  },
+  "keywords": [
+    "momo",
+    "memory",
+    "decisions",
+    "api",
+    "sdk"
+  ]
+}
