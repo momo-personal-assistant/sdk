@@ -1,6 +1,6 @@
 {
   "name": "@momo-memory/sdk",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "TypeScript SDK for the Momo decision memory API",
   "license": "MIT",
   "author": "Momo",

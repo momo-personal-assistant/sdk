@@ -250,6 +250,22 @@ export interface CapabilitiesResponse {
 }
 
 // ---------------------------------------------------------------------------
+// tools.execute()
+// ---------------------------------------------------------------------------
+
+export interface ToolExecuteParams {
+  /** Tool name from capabilities() */
+  tool: string;
+  /** Tool-specific parameters */
+  params: Record<string, unknown>;
+}
+
+export interface ToolExecuteResponse {
+  tool: string;
+  result: unknown;
+}
+
+// ---------------------------------------------------------------------------
 // usage()
 // ---------------------------------------------------------------------------
 

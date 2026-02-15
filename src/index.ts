@@ -35,6 +35,8 @@ export type {
   ToolDefinition,
   CapabilitiesResponse,
   UsageResponse,
+  ToolExecuteParams,
+  ToolExecuteResponse,
   ScheduledTask,
   ScheduledTasksListResponse,
   CreateScheduledTaskParams,

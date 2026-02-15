@@ -19,6 +19,8 @@ import type {
   InsightsResponse,
   CapabilitiesResponse,
   UsageResponse,
+  ToolExecuteParams,
+  ToolExecuteResponse,
   ScheduledTasksListResponse,
   CreateScheduledTaskParams,
   CreateScheduledTaskResponse,
@@ -33,6 +35,11 @@ export class Momo {
   private readonly baseUrl: string;
   private readonly timeout: number;
   private readonly _fetch: typeof globalThis.fetch;
+
+  /** Namespaced tool execution */
+  public readonly tools: {
+    execute: (params: ToolExecuteParams) => Promise<ToolExecuteResponse>;
+  };
 
   /** Namespaced CRUD for scheduled tasks */
   public readonly scheduledTasks: {
@@ -49,6 +56,11 @@ export class Momo {
     this.baseUrl = (config.baseUrl ?? DEFAULT_BASE_URL).replace(/\/+$/, "");
     this.timeout = config.timeout ?? DEFAULT_TIMEOUT;
     this._fetch = config.fetch ?? globalThis.fetch;
+
+    this.tools = {
+      execute: (params) =>
+        this.request<ToolExecuteResponse>("POST", "/api/ext/tools/execute", params),
+    };
 
     this.scheduledTasks = {
       list: () => this.request<ScheduledTasksListResponse>("GET", "/api/ext/scheduled-tasks"),
